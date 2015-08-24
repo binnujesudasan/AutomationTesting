@@ -83,11 +83,11 @@
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler" depends="build-refprojects">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="CLM_Login (1)">
+    <target name="CLM_Login" depends="build-eclipse-compiler">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -95,12 +95,12 @@
             <classpath refid="CLM_Automation.classpath"/>
         </junit>
     </target>
-    <target name="junitreport">
+    <target name="junitreport" depends="CLM_Login">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
             </fileset>
-            <report format="frames" todir="${basedir}/${junit.output.dir}"/>
+            <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
     </target>
 </project>
