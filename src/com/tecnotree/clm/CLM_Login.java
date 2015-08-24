@@ -22,5 +22,6 @@ public class CLM_Login {
 		driver.findElement(By.name("SearchButton")).click();
 		Thread.sleep(3000);
 		Assert.assertTrue(driver.getPageSource().contains("Search for \"CLM\" returned 5 matches"));
+		Thread.sleep(3000);
 	}
 }
