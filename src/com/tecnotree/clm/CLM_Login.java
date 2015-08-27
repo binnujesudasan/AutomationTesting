@@ -2,6 +2,7 @@ package com.tecnotree.clm;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -16,11 +17,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @FixMethodOrder(MethodSorters.JVM)
 public class CLM_Login {
 	WebDriver driver = null;
+	Logger logger = Logger.getLogger("BINNU");
 	@Before
 	public void setUp(){
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		//logger.log(Logger.INFO, msg, thrown);
 		driver.get("http://tecnotree.com");
 	}
 	@Test
