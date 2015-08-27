@@ -1,5 +1,6 @@
 package com.tecnotree.clm;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import junit.framework.Assert;
@@ -7,10 +8,11 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CLM_Login {
-	@SuppressWarnings("deprecation")
+	WebDriver driver = null;
 	@Test
 	public void testLaunch() throws InterruptedException{
 		WebDriver driver = new FirefoxDriver();
@@ -23,5 +25,15 @@ public class CLM_Login {
 		Thread.sleep(3000);
 		Assert.assertTrue(driver.getPageSource().contains("Search for \"CLM\" returned 5 matches"));
 		Thread.sleep(3000);
+	}
+	@Test
+	public void clickResultRandomly(){
+		List<WebElement> links = driver.findElements(By.xpath("//p[@class='url']/a"));
+		int randomNumber = 0;
+		if(links.size() > 0){
+			randomNumber = (int) (Math.random() * links.size());
+		}
+		links.get(randomNumber).click();
+		System.out.println(links.get(randomNumber));
 	}
 }
