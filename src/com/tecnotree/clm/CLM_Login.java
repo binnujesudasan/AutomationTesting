@@ -31,9 +31,6 @@ public class CLM_Login {
 		Thread.sleep(3000);
 		Assert.assertTrue(driver.getPageSource().contains("Search for \"CLM\" returned 5 matches"));
 		Thread.sleep(3000);
-	}
-	@Test
-	public void clickRandomResult(){
 		List<WebElement> links = driver.findElements(By.xpath("//p[@class='url']/a"));
 		int randomNumber = 0;
 		if(links.size() > 0){
